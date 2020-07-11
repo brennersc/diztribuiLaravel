@@ -1,0 +1,1453 @@
+<?xml version="1.0"?>
+<skipper version="3.2.23.1643" mvc="Laravel" orm="Laravel" name="Diztribui" uuid="29b8acbd-fabf-4611-9eb1-ede27b41423c">
+  <module name="\diztribui" local-name="diztribui" namespace="\App\Models" local-namespace="App\Models" export-format="Laravel" export-path="." uuid="e894538d-df11-40ce-999c-363ebb6fa251">
+    <entity name="\App\Models\Cargo" local-name="Cargo" namespace="\App\Models" uuid="db8c2b98-5407-4eec-bf65-386580be5012">
+      <field name="pkCargo" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="0db4a5fd-328e-4dc2-8aad-aed59ee20752"/>
+      <field name="nome" type="string" size="255" required="true" uuid="4945c3ae-b07b-4a8e-be55-cf48b446234d"/>
+      <field name="created_at" type="timestamp" uuid="c933ea83-ff9f-4ed8-ad9c-ee34faa8d3f1"/>
+      <field name="updated_at" type="timestamp" uuid="a3c0a6b4-6a97-45d7-8df4-b9cd528ff6c8"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="0dcb2643-1f70-40f0-8804-f7981eb7829e"/>
+      <orm-attributes>
+        <attribute name="table">cargo</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Models\Cargo" to="\App\Models\Empresa" caption="Empresa Cargos" owner-alias="cargos" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="6e2e1e94-add4-445b-bb21-c06a6cc9a36a">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="9480272b-bfae-48d3-9bdb-b1f21e4f7ee6"/>
+    </association>
+    <entity name="\App\Models\Empresa" local-name="Empresa" namespace="\App\Models" uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418">
+      <field name="pkEmpresa" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="e4ee7059-7155-4697-b080-96bc36feba96"/>
+      <field name="razaoSocial" type="string" size="255" required="true" uuid="7ff25ff6-9acc-4ee3-a6ef-a7452a8f5362"/>
+      <field name="nomeFantasia" type="string" size="255" required="true" uuid="327c79c7-f6ff-418b-81b7-71b879bdc86b"/>
+      <field name="cnpj" type="string" size="255" required="true" uuid="93d0bba7-792a-4019-931c-f05e0127dd16"/>
+      <field name="endereco" type="string" size="255" required="true" uuid="863ed285-dc32-4b31-b90f-a63f7e4c0b11"/>
+      <field name="site" type="string" size="255" uuid="668b8cc9-1d76-4d9d-89ff-f3cfda52715b"/>
+      <field name="telefone" type="string" size="255" required="true" uuid="4e213b86-fbda-405b-b04f-a042c5668231"/>
+      <field name="redeSocial" type="string" size="255" uuid="6526ebd5-6a42-4460-8bec-64d74e947cc5"/>
+      <field name="ramoDeAtividade" type="string" size="255" uuid="095ff71b-8e81-4ca1-b9d8-cc43d6aafa4d"/>
+      <field name="responsavelMarketing" type="string" size="255" uuid="2e998af1-c964-4b55-a33b-ebbd3e3570fe"/>
+      <field name="responsavelFinanceiro" type="string" size="255" uuid="210c0d21-c0b7-4872-bb1b-69d145a82c3e"/>
+      <field name="responsavelComercial" type="string" size="255" uuid="b4ab4c03-6636-434f-a1c9-08a8f56c08a4"/>
+      <field name="numero" type="integer" uuid="6b6bc61b-ba06-4b64-ba49-2a7d1d7c7a47"/>
+      <field name="complemento" type="string" size="255" uuid="6442a282-cfd3-40e9-b1a6-7814d73524c3"/>
+      <field name="bairro" type="string" size="255" uuid="f010358d-cb46-4fea-930d-449e62bf6fa4"/>
+      <field name="cidade" type="string" size="255" uuid="ab95b3f4-9d04-4fd3-b203-f6fd9917ba03"/>
+      <field name="estado" type="string" size="255" uuid="236165f2-b69e-4d09-889a-10cb94e3fbd8"/>
+      <field name="cep" type="string" size="255" uuid="e4193852-0fe7-47e9-a641-4afb0f25b9a2"/>
+      <field name="created_at" type="timestamp" uuid="434242de-c9fa-4e0e-82e1-6af6b5274f16"/>
+      <field name="updated_at" type="timestamp" uuid="834e122a-ac54-4780-b0e8-526969aaf6dc"/>
+      <index name="empresa_cnpj_unique" unique="true" uuid="ec324f8a-a4b2-415f-aedc-b072fed3c8bd">
+        <index-field name="cnpj" uuid="811e0fa2-ac75-4704-965c-1f7937740cb8"/>
+      </index>
+      <index name="empresa_nomefantasia_unique" unique="true" uuid="b116b646-0ae6-4ea4-b3f7-c8e63777be7d">
+        <index-field name="nomeFantasia" uuid="a326d31d-c2c4-41e1-9b61-9ac0cc0fce31"/>
+      </index>
+      <orm-attributes>
+        <attribute name="table">empresa</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="\App\Models\Gestor" local-name="Gestor" namespace="\App\Models" uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22">
+      <field name="pkGestor" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="d9ced07f-b225-48fd-8587-2c8198210dd1"/>
+      <field name="fkSetor" type="bigInteger" unsigned="true" uuid="3d54a9bd-9bc9-4576-93b2-91a553eedcd4"/>
+      <field name="created_at" type="timestamp" uuid="30fee2c5-189e-4638-8f1b-7e7dd60e32b3"/>
+      <field name="updated_at" type="timestamp" uuid="2f3cd6bb-354e-459f-ac03-299a9a240c0e"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="07776f07-3d10-4500-a675-37385d3b0a90"/>
+      <field name="fkUsuario" type="bigInteger" unsigned="true" uuid="2c721d44-cefb-4555-a50e-cc2ea0b083bd"/>
+      <field name="ehmaster" type="boolean" uuid="4d54d29c-a9f5-4d60-b86d-19bf82777659"/>
+      <orm-attributes>
+        <attribute name="table">gestor</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Models\Gestor" to="\App\Models\Empresa" caption="Empresa Gestors" owner-alias="gestors" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="4f52038f-4505-41fe-94d1-2821354e8fc3">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="ddfb86e3-a30a-4687-acee-c68c83b355a0"/>
+    </association>
+    <association from="\App\Models\Gestor" to="\App\Models\Setor" caption="Setor Gestors" owner-alias="gestors" inverse-alias="setor" many-owner="true" many-inverse="false" uuid="e0166474-5e8e-423a-be32-1bb5080c661c">
+      <association-field from="fkSetor" to="pkSetor" uuid="49e5ff3e-ebef-47a0-8136-070bf9ba2d4c"/>
+    </association>
+    <association from="\App\Models\Gestor" to="\App\Models\Usuario" caption="Usuario Gestors" owner-alias="gestors" inverse-alias="usuario" many-owner="true" many-inverse="false" uuid="f0f5dc10-6210-41c7-9ffc-592d7faa8298">
+      <association-field from="fkUsuario" to="pkUsuario" uuid="ec48bd76-a24e-4535-9533-39aca1530aa8"/>
+    </association>
+    <entity name="\App\Models\Usuario" local-name="Usuario" namespace="\App\Models" uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4">
+      <field name="pkUsuario" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="fd6c0a6a-80f3-4dc4-8946-feebb059f963"/>
+      <field name="nome" type="string" size="255" required="true" uuid="b189a42c-01db-40b4-817a-a6a3952b7c74"/>
+      <field name="email" type="string" size="255" required="true" uuid="7f8d9e01-3409-43c1-998b-000fad4b7785"/>
+      <field name="cpf" type="string" size="255" required="true" uuid="c4461621-8d4c-49cf-a62c-b6260177e790"/>
+      <field name="telefone" type="string" size="255" required="true" uuid="62a9f72e-9a87-4382-8289-d1c0478afd8c"/>
+      <field name="urlImage" type="string" size="255" uuid="653d0356-4026-462e-9765-f251cdd5d317"/>
+      <field name="created_at" type="timestamp" uuid="9ddfbc9e-d9e5-4c72-b023-2953debc4e56"/>
+      <field name="updated_at" type="timestamp" uuid="d0b71d1d-d4b4-47a4-9bcb-91204ffbd0e5"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="d05a5ec0-4194-488a-8b5a-a2deb62265aa"/>
+      <field name="fkSetor" type="bigInteger" unsigned="true" uuid="951bb831-ede8-4d43-86d3-9ef6f1179c5f"/>
+      <field name="fkCargo" type="bigInteger" unsigned="true" uuid="ad8570fe-b9f6-492d-8a91-681de761e88d"/>
+      <field name="facebook" type="string" uuid="9cf2d2b5-6c2c-4217-9763-e34de6b4ba16"/>
+      <field name="instagram" type="string" uuid="43861a79-2850-491c-bf1e-8b24d56a9d34"/>
+      <field name="twitter" type="string" uuid="6d7815ae-9046-4e23-a127-67626f1d28a9"/>
+      <field name="linkedin" type="string" uuid="98633831-6e62-487b-8c13-d213ec052473"/>
+      <field name="site" type="string" uuid="955ec5fd-e267-4bb0-8a44-fcdea9083860"/>
+      <field name="password" type="string" uuid="55c67ef5-a28b-454b-90c3-dd8a29f2e8a5"/>
+      <field name="administrador" type="boolean" uuid="77dfb99e-e9f3-43de-ba02-176c2875821d"/>
+      <index name="pessoa_cpf_unique" unique="true" uuid="f62f9150-a029-4764-8268-c8405227889c">
+        <index-field name="cpf" uuid="69fbee0f-3439-4181-acf0-ea8360166f4b"/>
+      </index>
+      <index name="pessoa_email_unique" unique="true" uuid="9f617cbe-f769-48bc-8392-268f2ed8a7eb">
+        <index-field name="email" uuid="0c546350-1045-47b1-b692-7fed26fc651d"/>
+      </index>
+      <orm-attributes>
+        <attribute name="table">usuario</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Models\Usuario" to="\App\Models\Empresa" caption="Empresa Usuarios" owner-alias="usuarios" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="4dcf8962-ad8f-4c8e-b44c-8de764116e7e">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="6833a45e-514e-4740-a629-c202ef2a72ee"/>
+    </association>
+    <association from="\App\Models\Usuario" to="\App\Models\Setor" caption="Setor Usuarios" owner-alias="usuarios" inverse-alias="setor" many-owner="true" many-inverse="false" uuid="d038525c-3364-4cac-b6cd-03245154e660">
+      <association-field from="fkSetor" to="pkSetor" uuid="840a3e09-f1e6-4a38-83ad-35d14c96c102"/>
+    </association>
+    <association from="\App\Models\Usuario" to="\App\Models\Cargo" caption="Cargo Usuarios" owner-alias="usuarios" inverse-alias="cargo" many-owner="true" many-inverse="false" uuid="21890e98-96d0-4ca1-941e-e699537f648e">
+      <association-field from="fkCargo" to="pkCargo" uuid="e3d41994-e371-4e4d-83da-8f61d0973df6"/>
+    </association>
+    <entity name="\App\Models\Setor" local-name="Setor" namespace="\App\Models" uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f">
+      <field name="pkSetor" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="506b4087-d5b4-4e40-9e73-91b7a76b57ac"/>
+      <field name="nome" type="string" size="255" required="true" uuid="1227a673-4e16-415a-a261-191136062df7"/>
+      <field name="created_at" type="timestamp" uuid="cd968d41-da1f-47cc-b9ce-659c74eb921c"/>
+      <field name="updated_at" type="timestamp" uuid="0b06cfdb-d9ab-4ef1-b46f-256d3da1c425"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="eb982121-6ea9-45f8-b84d-c4a61d15972a"/>
+      <orm-attributes>
+        <attribute name="table">setor</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="\App\Models\Setor" to="\App\Models\Empresa" caption="Empresa Setors" owner-alias="setors" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="2a63a99c-c5f9-4fbc-994c-918cf57e19a4">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="02ee2c40-4bbe-4818-90fa-23cc833e69a7"/>
+    </association>
+    <entity name="\App\Models\RedesSociais" local-name="RedesSociais" namespace="\App\Models" uuid="0c31954b-3152-4414-ac88-41f2d1955204">
+      <field name="pkRedesSociais" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="4890a908-4d98-4b44-b28c-c42b88ee6e60"/>
+      <field name="created_at" type="timestamp" uuid="a66dd4b7-324e-474e-8578-f75e286f5c99"/>
+      <field name="updated_at" type="timestamp" uuid="423b1b4c-d3c9-4596-9e54-83abdd173a19"/>
+      <field name="fkUsuario" type="bigInteger" unsigned="true" uuid="0f09fa11-2265-47bd-ab3b-54db533c002b"/>
+      <field name="fkTipoRedeSocial" type="bigInteger" unsigned="true" uuid="c6a04cf7-66f2-40e0-bd9f-4d95e2f7fb3a"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="fafa2471-9d25-4f9f-8df8-4670478c9d75"/>
+    </entity>
+    <association from="\App\Models\RedesSociais" to="\App\Models\Usuario" caption="Usuario RedesSociais" owner-alias="redesSociais" inverse-alias="usuario" many-owner="true" many-inverse="false" uuid="7c2b9625-5e46-471a-8693-f7f09a832d8d">
+      <association-field from="fkUsuario" to="pkUsuario" uuid="04eca15d-a268-4376-a03a-dc700102dfda"/>
+    </association>
+    <association from="\App\Models\RedesSociais" to="\App\Models\TiposRedesSociais" caption="TiposRedesSociais RedesSociais" owner-alias="redesSociais" inverse-alias="tiposRedesSociais" many-owner="true" many-inverse="false" uuid="bddbf4c1-f07d-476b-b2cb-33f339c7ead2">
+      <association-field from="fkTipoRedeSocial" to="pkTiposRedesSociais" uuid="d9ff6964-ac1c-485d-8593-a6724e82e969"/>
+    </association>
+    <association from="\App\Models\RedesSociais" to="\App\Models\Empresa" caption="Empresa RedesSociais" owner-alias="redesSociais" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="a5c2a8dd-d8ec-4b3c-b462-ece727f890c8">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="4fc33c97-fac8-4e7b-8fa8-8eb2f55c08e1"/>
+    </association>
+    <entity name="\App\Models\TiposRedesSociais" local-name="TiposRedesSociais" namespace="\App\Models" uuid="f8ed3c1c-541b-43c2-b795-236efa227082">
+      <field name="pkTiposRedesSociais" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="6d74c8fd-024c-4919-94f1-8f641c7d4fb8"/>
+      <field name="created_at" type="timestamp" uuid="f4d61bd5-0561-404c-808b-6889ccee3cea"/>
+      <field name="updated_at" type="timestamp" uuid="e8e58db7-afbc-4b4d-a6d8-cf6cdd9745cc"/>
+    </entity>
+    <entity name="\App\Models\Tema" local-name="Tema" namespace="\App\Models" uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e">
+      <field name="pkTema" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="3ea3b053-d747-41c8-981d-b0d9aeacccf3"/>
+      <field name="created_at" type="timestamp" uuid="ada18f85-01ae-4e11-b622-0a7d8bae86b6"/>
+      <field name="updated_at" type="timestamp" uuid="d0eeec68-24ba-46d0-b3af-254e34c29dd2"/>
+      <field name="descricao" type="text" uuid="23eea1f3-6bef-49a6-a2a2-90753d201143"/>
+    </entity>
+    <entity name="\App\Models\Materia" local-name="Materia" namespace="\App\Models" uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7">
+      <field name="pkMateria" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="d51c7049-c848-49f3-8800-ef93bdc755eb"/>
+      <field name="created_at" type="timestamp" uuid="4d13f067-5de7-43c2-bec7-42aa6ff7874c"/>
+      <field name="updated_at" type="timestamp" uuid="9c1e3a66-d369-497a-97f2-ffa3bd49571f"/>
+      <field name="fkTema" type="bigInteger" unsigned="true" uuid="2c794924-9444-4880-84d9-e29017710410"/>
+      <field name="titulo" type="text" required="true" uuid="0824a94e-8521-4e58-b94b-cfa380dfc5ce"/>
+      <field name="descricao" type="longText" uuid="8becd4a2-04e0-465d-b262-c52188c71a93"/>
+      <field name="fkCategoria" type="bigInteger" unsigned="true" uuid="bd9e01d0-20d3-41bf-be81-9a3050d20db6"/>
+    </entity>
+    <association from="\App\Models\Materia" to="\App\Models\Tema" caption="Tema Materias" owner-alias="materias" inverse-alias="tema" many-owner="true" many-inverse="false" uuid="7dca64d8-2e36-41c9-ac74-5fa5382ba009">
+      <association-field from="fkTema" to="pkTema" uuid="fbedd74b-c0f2-409a-b193-b4b008178eb6"/>
+    </association>
+    <association from="\App\Models\Materia" to="\App\Models\Categoria" caption="Categoria Materias" owner-alias="materias" inverse-alias="categoria" many-owner="true" many-inverse="false" uuid="d6e57710-cd24-4cad-b197-74234a6bcb0f">
+      <association-field from="fkCategoria" to="pkCategoria" uuid="a13785fa-5278-4b8a-acac-bc79367246dc"/>
+    </association>
+    <entity name="\App\Models\Item" local-name="Item" namespace="\App\Models" uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9">
+      <field name="pkItem" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="90ae2ecd-65af-4258-a7c0-18bb6a4cec1b"/>
+      <field name="created_at" type="timestamp" uuid="01fc38ee-b800-4ce0-8264-e8da172afdf4"/>
+      <field name="updated_at" type="timestamp" uuid="3d112359-52a8-4727-b1a6-f20e1ddb0573"/>
+      <field name="fkMateria" type="bigInteger" unsigned="true" uuid="d150948f-6647-4dbc-9f50-0b331b1c3048"/>
+      <field name="fkTipoDeItem" type="bigInteger" unsigned="true" uuid="0a58cd18-7887-434b-a9ae-2f76e8c8e4a9"/>
+      <field name="texto" type="longText" uuid="f7580e1f-81e6-42e0-bb98-94baae5da539"/>
+      <field name="videoIncorporado" type="longText" uuid="a1f73d62-703a-466d-89a7-716a7cf05e74"/>
+      <field name="ordem" type="integer" uuid="d4f04108-9692-4274-89c4-a2667e2b6a72"/>
+    </entity>
+    <association from="\App\Models\Item" to="\App\Models\Materia" caption="Materia Conteudos" owner-alias="conteudos" inverse-alias="materia" many-owner="true" many-inverse="false" uuid="9278970b-db17-4875-9cda-633da30d2f7c">
+      <association-field from="fkMateria" to="pkMateria" uuid="2cbbe518-46fa-4953-bd4b-93d3ca2ce8e9"/>
+    </association>
+    <association from="\App\Models\Item" to="\App\Models\TipoDeitem" caption="TipoDeConteudo Conteudos" owner-alias="conteudos" inverse-alias="tipoDeConteudo" many-owner="true" many-inverse="false" uuid="0538deda-8b92-4700-a5d0-e1079aa12b87">
+      <association-field from="fkTipoDeItem" to="pkTipoDeItem" uuid="bb32a0c6-75de-4bbf-a429-67082719c1bb"/>
+    </association>
+    <entity name="\App\Models\TipoDeitem" local-name="TipoDeitem" namespace="\App\Models" uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee">
+      <field name="pkTipoDeItem" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="a74ad25b-97b8-4389-8cc6-10b5569732ec"/>
+      <field name="created_at" type="timestamp" uuid="bb1d2ddd-7a8d-4d08-b38e-18d1d0751b7f"/>
+      <field name="updated_at" type="timestamp" uuid="cc74d208-c4fa-429c-a9f3-f8eb26c48a53"/>
+      <field name="descricao" type="text" uuid="0487b5a1-776d-4ec8-a1ec-564ff4d2684b"/>
+    </entity>
+    <entity name="\App\Models\Questionario" local-name="Questionario" namespace="\App\Models" uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933">
+      <field name="pkQuestionario" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="0b8ac907-0163-4d69-bc47-ae7129c13e89"/>
+      <field name="created_at" type="timestamp" uuid="ce99194a-7ab1-4a56-8f91-1674ddfe0c21"/>
+      <field name="updated_at" type="timestamp" auto-increment="true" uuid="8918cd7c-6612-413f-8b21-187244175e8c"/>
+      <field name="pontuacaoPorQuestao" type="float" uuid="070a8a0b-b77c-4d3d-b85e-8056ca4e41ce"/>
+      <field name="minimoAprovacao" type="float" uuid="bddd1efa-292a-42bf-9d2a-d357d613cc04"/>
+      <field name="enunciado" type="text" uuid="bd29388d-73c8-4b60-8697-097171007491"/>
+      <field name="fkItem" type="bigInteger" unsigned="true" uuid="fc9262b5-de75-49a3-9486-572e2a6eab1c"/>
+    </entity>
+    <association from="\App\Models\Questionario" to="\App\Models\Item" caption="Item Questionarios" owner-alias="questionarios" inverse-alias="item" many-owner="true" many-inverse="false" uuid="f1472f4c-cba0-438c-8693-2e3845186374">
+      <association-field from="fkItem" to="pkItem" uuid="a7a65cca-2d69-4d8a-9a6f-9a379f983788"/>
+    </association>
+    <entity name="\App\Models\Respostas" local-name="Respostas" namespace="\App\Models" uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081">
+      <field name="fkQuestoes" type="bigInteger" unsigned="true" uuid="66c24d87-75b0-4858-a3dc-952e774f8694"/>
+      <field name="pkRespostas" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="eeeca149-5125-4132-abf0-69bafc6e3ad4"/>
+      <field name="created_at" type="timestamp" uuid="bd7e1919-6647-4e95-bdab-a8e72411ff14"/>
+      <field name="updated_at" type="timestamp" uuid="a6b5683e-e2c5-423b-b5d1-c88a5b529d87"/>
+      <field name="fkQuestao" type="bigInteger" unsigned="true" uuid="3453dd21-f92b-4d10-a84b-b9117e62b89d"/>
+      <field name="texto" type="string" uuid="a8d31b57-e1d9-4889-bb67-453785aacc87"/>
+      <field name="correta" type="boolean" uuid="2bf24aa7-2a35-43fb-8d4c-9931db2758eb"/>
+      <field name="pontuacaoPorQuestao" type="decimal" uuid="10e82c59-10e9-4660-9278-290298e21a37"/>
+    </entity>
+    <association from="\App\Models\Respostas" to="\App\Models\Questoes" caption="Questoes Respostas" owner-alias="respostas" inverse-alias="questoes" many-owner="true" many-inverse="false" uuid="836c42cc-3f25-4f7e-b458-f686e128342b">
+      <association-field from="fkQuestoes" to="pkQuestoes" uuid="5d8d26d0-2c4e-4bc0-b372-0f51153430f1"/>
+    </association>
+    <entity name="\App\Models\Menu" local-name="Menu" namespace="\App\Models" uuid="bea4f6d1-d27d-4971-b283-59a02cb26824">
+      <field name="pkMenu" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="3830b41c-15d3-49b2-92b5-19adc11a960e"/>
+      <field name="created_at" type="timestamp" uuid="3dc827c6-1161-4397-9538-bcfed9b387d9"/>
+      <field name="updated_at" type="timestamp" uuid="ed634e4d-e261-4de8-8043-47dfd794f0cd"/>
+      <field name="descricao" type="string" uuid="ee9ccbac-cb1d-4783-8b7e-418b49f80f86"/>
+      <field name="url" type="string" uuid="fee0ecd6-cabf-4b15-b1a6-5145e3df3587"/>
+      <field name="pai" type="bigInteger" unsigned="true" uuid="b7d03428-750b-4a10-a50a-99c6325cd9ae"/>
+      <field name="administrador" type="boolean" uuid="8136d5e3-9460-4943-bd78-e9b4ad734721"/>
+      <field name="master" type="boolean" uuid="a6713621-899f-4927-b57b-b8ba93b5762d"/>
+      <field name="gestor" type="boolean" uuid="7a15ef91-9622-462c-bbca-c6ca27b384fe"/>
+      <field name="usuario" type="boolean" uuid="cb37289a-99fa-44af-a653-5b0e9cf4f05d"/>
+      <field name="icon" type="string" uuid="672102e5-8d7b-4359-9248-d5cabb00f7df"/>
+      <field name="ordem" type="integer" uuid="1e1871e4-5f50-4883-8d40-9cd04c3e9731"/>
+    </entity>
+    <association from="\App\Models\Menu" to="\App\Models\Menu" caption="Menu Menus" owner-alias="menus" inverse-alias="menu" many-owner="true" many-inverse="false" uuid="6fd71355-e5b8-416c-ba17-fca502bab1ca">
+      <association-field from="pai" to="pkMenu" uuid="bf79245c-8f53-47c1-b3ba-4d8ef9929492"/>
+    </association>
+    <entity name="\App\Models\Alerta" local-name="Alerta" namespace="\App\Models" uuid="d916f002-d517-40f8-8505-b70baee24546">
+      <field name="pkAlerta" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="6a33f97e-4f8d-4854-ac17-7d2d2c24db06"/>
+      <field name="created_at" type="timestamp" uuid="d02ad645-286e-4309-b957-99a34c03983b"/>
+      <field name="updated_at" type="timestamp" uuid="a1c5d61e-2af7-4f59-9c63-c52528d8a656"/>
+      <field name="mensagem" type="text" uuid="c61b5487-2526-4341-bd03-d95f3bf254f9"/>
+      <field name="fkSetor" type="bigInteger" unsigned="true" uuid="92f909d8-cc1c-4650-909e-a4cc4a158c9e"/>
+      <field name="fkUsuario" type="bigInteger" unsigned="true" uuid="55462f62-f561-41d7-9a04-901119d1e5b9"/>
+      <field name="grupo" type="bigInteger" uuid="04e50f38-d5d0-4c5f-9a70-aec375980196"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="6f08fbaf-073c-48cb-8c05-086ca61c2d66"/>
+      <field name="titulo" type="string" uuid="e0dd9975-d8ea-451c-b417-4d7c13027074"/>
+    </entity>
+    <association from="\App\Models\Alerta" to="\App\Models\Setor" caption="Setor Alertas" owner-alias="alertas" inverse-alias="setor" many-owner="true" many-inverse="false" uuid="37006940-f02c-4dd8-90f6-b5d2a5a88db2">
+      <association-field from="fkSetor" to="pkSetor" uuid="a1fe7c18-e5a1-46f0-83ec-25d83028e5a5"/>
+    </association>
+    <association from="\App\Models\Alerta" to="\App\Models\Usuario" caption="Usuario Alertas" owner-alias="alertas" inverse-alias="usuario" many-owner="true" many-inverse="false" uuid="5a5dba80-b56b-477b-9137-39d279e4a61b">
+      <association-field from="fkUsuario" to="pkUsuario" uuid="fcba3a57-8838-45b6-b351-b9f07039365a"/>
+    </association>
+    <association from="\App\Models\Alerta" to="\App\Models\Empresa" caption="Empresa Alertas" owner-alias="alertas" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="572c8de1-4858-4745-82ed-ee17492eeece">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="d32cb126-000b-48ff-8a69-5df03b6fd6aa"/>
+    </association>
+    <entity name="\App\Models\Categoria" local-name="Categoria" namespace="\App\Models" uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52">
+      <field name="pkCategoria" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="d108a306-aa47-4844-bbb6-3e30f7064286"/>
+      <field name="created_at" type="timestamp" uuid="79a8d75d-66df-4f76-a0c3-5e0604b0bc6b"/>
+      <field name="updated_at" type="timestamp" uuid="e01089ce-edac-40ee-9c74-a43fe1ecec9e"/>
+      <field name="fkEmpresa" type="bigInteger" unsigned="true" uuid="5d6ba94f-03f7-485b-9d1e-75289d25ff60"/>
+      <field name="titulo" type="string" uuid="04777c72-a9a2-4320-a5a1-7bc10f23b8f2"/>
+    </entity>
+    <association from="\App\Models\Categoria" to="\App\Models\Empresa" caption="Empresa Categorias" owner-alias="categorias" inverse-alias="empresa" many-owner="true" many-inverse="false" uuid="02a9464d-635f-4a95-b53d-4253849f202b">
+      <association-field from="fkEmpresa" to="pkEmpresa" uuid="11829a60-fc8f-4097-a320-d3b648926f1d"/>
+    </association>
+    <entity name="\App\Models\UsuarioRespostas" local-name="UsuarioRespostas" namespace="\App\Models" uuid="cf93862c-3b7f-41f1-ac4c-bbb33f9f343f">
+      <field name="respostas_pk_respostas" type="bigInteger" required="true" primary="true" unsigned="true" uuid="4724ae7f-bd70-4849-b3a3-e980fc8a18b4"/>
+      <field name="usuario_pk_usuario" type="bigInteger" required="true" primary="true" unsigned="true" uuid="ca490922-f55c-460d-bbd5-95f8596768d0"/>
+    </entity>
+    <many-to-many mn-entity="\App\Models\UsuarioRespostas" caption="Usuario to Respostas" uuid="5a9d3627-10b9-4d88-ada1-1a9f14f7a1b7">
+      <many-to-many-entity name="\App\Models\Respostas" owning-side="true" alias="respostas" uuid="a2a2beb9-638c-4bb6-8c5f-ebc740516fb0">
+        <many-to-many-field from="respostas_pk_respostas" to="pkRespostas" uuid="c4e0f504-9f6d-41c1-98a1-62685f2c6b04"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\App\Models\Usuario" owning-side="false" alias="usuarios" uuid="ee189a3e-a03a-486b-9f3e-37ece26fc6c9">
+        <many-to-many-field from="usuario_pk_usuario" to="pkUsuario" uuid="12c552c7-7e5f-4eba-9c16-4b15098ebcbb"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="\App\Models\Questoes" local-name="Questoes" namespace="\App\Models" uuid="717f7712-9893-49e1-a767-8567e6793dfe">
+      <field name="pkQuestoes" type="bigInteger" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="160620be-4aa9-4c4f-9883-59ee65359ea6"/>
+      <field name="created_at" type="timestamp" uuid="db587b6c-46ba-4665-b1e8-fa04d99623a8"/>
+      <field name="updated_at" type="timestamp" uuid="09b0c531-2dda-4cb6-b2c9-10c411f7ac32"/>
+      <field name="enunciado" type="string" uuid="e49530d9-524d-4b06-8999-108e16bda466"/>
+      <field name="fkQuestionario" type="bigInteger" unsigned="true" uuid="aa958e99-7427-43f5-8c9c-a0987914322d"/>
+    </entity>
+    <association from="\App\Models\Questoes" to="\App\Models\Questionario" caption="Questionario Questoes" owner-alias="questoes" inverse-alias="questionario" many-owner="true" many-inverse="false" uuid="9e82ce8b-28e6-49f8-adb3-491bb7e8d4d0">
+      <association-field from="fkQuestionario" to="pkQuestionario" uuid="c0cd4cbd-b529-420c-81fa-15ba8a1b4256"/>
+    </association>
+    <orm-attributes>
+      <attribute name="migrations-path">database/migrations</attribute>
+    </orm-attributes>
+    <migrations version="1.0">
+      <revision uuid="f7dd7677-71c9-4e98-b75c-aae4244e0148" date="2020-05-22 13:40:52.688358" exportable="true">
+        <element action="add" uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="module">
+          <property name="export-format" value="Laravel"/>
+          <property name="export-path" value="."/>
+          <property name="local-name" value="diztribui"/>
+          <property name="local-namespace" value="App\Models"/>
+          <property name="migrations-path" value="database/migrations"/>
+          <property name="name" value="\diztribui"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="db8c2b98-5407-4eec-bf65-386580be5012" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Cargo"/>
+          <property name="name" value="\App\Models\Cargo"/>
+          <property name="namespace" value="\App\Models"/>
+          <property name="table" value="cargo"/>
+        </element>
+        <element action="add" uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Empresa"/>
+          <property name="name" value="\App\Models\Empresa"/>
+          <property name="namespace" value="\App\Models"/>
+          <property name="table" value="empresa"/>
+        </element>
+        <element action="add" uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Gestor"/>
+          <property name="name" value="\App\Models\Gestor"/>
+          <property name="namespace" value="\App\Models"/>
+          <property name="table" value="gestor"/>
+        </element>
+        <element action="add" uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Usuario"/>
+          <property name="name" value="\App\Models\Usuario"/>
+          <property name="namespace" value="\App\Models"/>
+          <property name="table" value="usuario"/>
+        </element>
+        <element action="add" uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Setor"/>
+          <property name="name" value="\App\Models\Setor"/>
+          <property name="namespace" value="\App\Models"/>
+          <property name="table" value="setor"/>
+        </element>
+        <element action="add" uuid="0c31954b-3152-4414-ac88-41f2d1955204" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="RedesSociais"/>
+          <property name="name" value="\App\Models\RedesSociais"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="f8ed3c1c-541b-43c2-b795-236efa227082" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="TiposRedesSociais"/>
+          <property name="name" value="\App\Models\TiposRedesSociais"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Tema"/>
+          <property name="name" value="\App\Models\Tema"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Materia"/>
+          <property name="name" value="\App\Models\Materia"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Item"/>
+          <property name="name" value="\App\Models\Item"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="TipoDeitem"/>
+          <property name="name" value="\App\Models\TipoDeitem"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Questionario"/>
+          <property name="name" value="\App\Models\Questionario"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Respostas"/>
+          <property name="name" value="\App\Models\Respostas"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Menu"/>
+          <property name="name" value="\App\Models\Menu"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="d916f002-d517-40f8-8505-b70baee24546" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Alerta"/>
+          <property name="name" value="\App\Models\Alerta"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Categoria"/>
+          <property name="name" value="\App\Models\Categoria"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="cf93862c-3b7f-41f1-ac4c-bbb33f9f343f" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="UsuarioRespostas"/>
+          <property name="name" value="\App\Models\UsuarioRespostas"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="717f7712-9893-49e1-a767-8567e6793dfe" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="entity">
+          <property name="local-name" value="Questoes"/>
+          <property name="name" value="\App\Models\Questoes"/>
+          <property name="namespace" value="\App\Models"/>
+        </element>
+        <element action="add" uuid="0db4a5fd-328e-4dc2-8aad-aed59ee20752" parent-uuid="db8c2b98-5407-4eec-bf65-386580be5012" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkCargo"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="4945c3ae-b07b-4a8e-be55-cf48b446234d" parent-uuid="db8c2b98-5407-4eec-bf65-386580be5012" sibling-uuid="0db4a5fd-328e-4dc2-8aad-aed59ee20752" type="field">
+          <property name="name" value="nome"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="c933ea83-ff9f-4ed8-ad9c-ee34faa8d3f1" parent-uuid="db8c2b98-5407-4eec-bf65-386580be5012" sibling-uuid="4945c3ae-b07b-4a8e-be55-cf48b446234d" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="a3c0a6b4-6a97-45d7-8df4-b9cd528ff6c8" parent-uuid="db8c2b98-5407-4eec-bf65-386580be5012" sibling-uuid="c933ea83-ff9f-4ed8-ad9c-ee34faa8d3f1" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="0dcb2643-1f70-40f0-8804-f7981eb7829e" parent-uuid="db8c2b98-5407-4eec-bf65-386580be5012" sibling-uuid="a3c0a6b4-6a97-45d7-8df4-b9cd528ff6c8" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="e4ee7059-7155-4697-b080-96bc36feba96" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkEmpresa"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="7ff25ff6-9acc-4ee3-a6ef-a7452a8f5362" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="e4ee7059-7155-4697-b080-96bc36feba96" type="field">
+          <property name="name" value="razaoSocial"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="327c79c7-f6ff-418b-81b7-71b879bdc86b" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="7ff25ff6-9acc-4ee3-a6ef-a7452a8f5362" type="field">
+          <property name="name" value="nomeFantasia"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="93d0bba7-792a-4019-931c-f05e0127dd16" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="327c79c7-f6ff-418b-81b7-71b879bdc86b" type="field">
+          <property name="name" value="cnpj"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="863ed285-dc32-4b31-b90f-a63f7e4c0b11" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="93d0bba7-792a-4019-931c-f05e0127dd16" type="field">
+          <property name="name" value="endereco"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="668b8cc9-1d76-4d9d-89ff-f3cfda52715b" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="863ed285-dc32-4b31-b90f-a63f7e4c0b11" type="field">
+          <property name="name" value="site"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="4e213b86-fbda-405b-b04f-a042c5668231" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="668b8cc9-1d76-4d9d-89ff-f3cfda52715b" type="field">
+          <property name="name" value="telefone"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="6526ebd5-6a42-4460-8bec-64d74e947cc5" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="4e213b86-fbda-405b-b04f-a042c5668231" type="field">
+          <property name="name" value="redeSocial"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="095ff71b-8e81-4ca1-b9d8-cc43d6aafa4d" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="6526ebd5-6a42-4460-8bec-64d74e947cc5" type="field">
+          <property name="name" value="ramoDeAtividade"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="2e998af1-c964-4b55-a33b-ebbd3e3570fe" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="095ff71b-8e81-4ca1-b9d8-cc43d6aafa4d" type="field">
+          <property name="name" value="responsavelMarketing"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="210c0d21-c0b7-4872-bb1b-69d145a82c3e" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="2e998af1-c964-4b55-a33b-ebbd3e3570fe" type="field">
+          <property name="name" value="responsavelFinanceiro"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="b4ab4c03-6636-434f-a1c9-08a8f56c08a4" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="210c0d21-c0b7-4872-bb1b-69d145a82c3e" type="field">
+          <property name="name" value="responsavelComercial"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="6b6bc61b-ba06-4b64-ba49-2a7d1d7c7a47" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="b4ab4c03-6636-434f-a1c9-08a8f56c08a4" type="field">
+          <property name="name" value="numero"/>
+          <property name="type" value="integer"/>
+        </element>
+        <element action="add" uuid="6442a282-cfd3-40e9-b1a6-7814d73524c3" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="6b6bc61b-ba06-4b64-ba49-2a7d1d7c7a47" type="field">
+          <property name="name" value="complemento"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="f010358d-cb46-4fea-930d-449e62bf6fa4" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="6442a282-cfd3-40e9-b1a6-7814d73524c3" type="field">
+          <property name="name" value="bairro"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="ab95b3f4-9d04-4fd3-b203-f6fd9917ba03" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="f010358d-cb46-4fea-930d-449e62bf6fa4" type="field">
+          <property name="name" value="cidade"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="236165f2-b69e-4d09-889a-10cb94e3fbd8" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="ab95b3f4-9d04-4fd3-b203-f6fd9917ba03" type="field">
+          <property name="name" value="estado"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="e4193852-0fe7-47e9-a641-4afb0f25b9a2" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="236165f2-b69e-4d09-889a-10cb94e3fbd8" type="field">
+          <property name="name" value="cep"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="434242de-c9fa-4e0e-82e1-6af6b5274f16" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="e4193852-0fe7-47e9-a641-4afb0f25b9a2" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="834e122a-ac54-4780-b0e8-526969aaf6dc" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" sibling-uuid="434242de-c9fa-4e0e-82e1-6af6b5274f16" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="d9ced07f-b225-48fd-8587-2c8198210dd1" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkGestor"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="3d54a9bd-9bc9-4576-93b2-91a553eedcd4" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="d9ced07f-b225-48fd-8587-2c8198210dd1" type="field">
+          <property name="name" value="fkSetor"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="30fee2c5-189e-4638-8f1b-7e7dd60e32b3" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="3d54a9bd-9bc9-4576-93b2-91a553eedcd4" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="2f3cd6bb-354e-459f-ac03-299a9a240c0e" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="30fee2c5-189e-4638-8f1b-7e7dd60e32b3" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="07776f07-3d10-4500-a675-37385d3b0a90" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="2f3cd6bb-354e-459f-ac03-299a9a240c0e" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="2c721d44-cefb-4555-a50e-cc2ea0b083bd" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="07776f07-3d10-4500-a675-37385d3b0a90" type="field">
+          <property name="name" value="fkUsuario"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="4d54d29c-a9f5-4d60-b86d-19bf82777659" parent-uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" sibling-uuid="2c721d44-cefb-4555-a50e-cc2ea0b083bd" type="field">
+          <property name="name" value="ehmaster"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="fd6c0a6a-80f3-4dc4-8946-feebb059f963" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkUsuario"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="b189a42c-01db-40b4-817a-a6a3952b7c74" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="fd6c0a6a-80f3-4dc4-8946-feebb059f963" type="field">
+          <property name="name" value="nome"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="7f8d9e01-3409-43c1-998b-000fad4b7785" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="b189a42c-01db-40b4-817a-a6a3952b7c74" type="field">
+          <property name="name" value="email"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="c4461621-8d4c-49cf-a62c-b6260177e790" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="7f8d9e01-3409-43c1-998b-000fad4b7785" type="field">
+          <property name="name" value="cpf"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="62a9f72e-9a87-4382-8289-d1c0478afd8c" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="c4461621-8d4c-49cf-a62c-b6260177e790" type="field">
+          <property name="name" value="telefone"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="653d0356-4026-462e-9765-f251cdd5d317" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="62a9f72e-9a87-4382-8289-d1c0478afd8c" type="field">
+          <property name="name" value="urlImage"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="9ddfbc9e-d9e5-4c72-b023-2953debc4e56" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="653d0356-4026-462e-9765-f251cdd5d317" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="d0b71d1d-d4b4-47a4-9bcb-91204ffbd0e5" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="9ddfbc9e-d9e5-4c72-b023-2953debc4e56" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="d05a5ec0-4194-488a-8b5a-a2deb62265aa" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="d0b71d1d-d4b4-47a4-9bcb-91204ffbd0e5" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="951bb831-ede8-4d43-86d3-9ef6f1179c5f" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="d05a5ec0-4194-488a-8b5a-a2deb62265aa" type="field">
+          <property name="name" value="fkSetor"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="ad8570fe-b9f6-492d-8a91-681de761e88d" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="951bb831-ede8-4d43-86d3-9ef6f1179c5f" type="field">
+          <property name="name" value="fkCargo"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="9cf2d2b5-6c2c-4217-9763-e34de6b4ba16" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="ad8570fe-b9f6-492d-8a91-681de761e88d" type="field">
+          <property name="name" value="facebook"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="43861a79-2850-491c-bf1e-8b24d56a9d34" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="9cf2d2b5-6c2c-4217-9763-e34de6b4ba16" type="field">
+          <property name="name" value="instagram"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="6d7815ae-9046-4e23-a127-67626f1d28a9" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="43861a79-2850-491c-bf1e-8b24d56a9d34" type="field">
+          <property name="name" value="twitter"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="98633831-6e62-487b-8c13-d213ec052473" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="6d7815ae-9046-4e23-a127-67626f1d28a9" type="field">
+          <property name="name" value="linkedin"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="955ec5fd-e267-4bb0-8a44-fcdea9083860" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="98633831-6e62-487b-8c13-d213ec052473" type="field">
+          <property name="name" value="site"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="55c67ef5-a28b-454b-90c3-dd8a29f2e8a5" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="955ec5fd-e267-4bb0-8a44-fcdea9083860" type="field">
+          <property name="name" value="password"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="77dfb99e-e9f3-43de-ba02-176c2875821d" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" sibling-uuid="55c67ef5-a28b-454b-90c3-dd8a29f2e8a5" type="field">
+          <property name="name" value="administrador"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="506b4087-d5b4-4e40-9e73-91b7a76b57ac" parent-uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkSetor"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="1227a673-4e16-415a-a261-191136062df7" parent-uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" sibling-uuid="506b4087-d5b4-4e40-9e73-91b7a76b57ac" type="field">
+          <property name="name" value="nome"/>
+          <property name="required" value="true"/>
+          <property name="size" value="255"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="cd968d41-da1f-47cc-b9ce-659c74eb921c" parent-uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" sibling-uuid="1227a673-4e16-415a-a261-191136062df7" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="0b06cfdb-d9ab-4ef1-b46f-256d3da1c425" parent-uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" sibling-uuid="cd968d41-da1f-47cc-b9ce-659c74eb921c" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="eb982121-6ea9-45f8-b84d-c4a61d15972a" parent-uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" sibling-uuid="0b06cfdb-d9ab-4ef1-b46f-256d3da1c425" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="4890a908-4d98-4b44-b28c-c42b88ee6e60" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkRedesSociais"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="a66dd4b7-324e-474e-8578-f75e286f5c99" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" sibling-uuid="4890a908-4d98-4b44-b28c-c42b88ee6e60" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="423b1b4c-d3c9-4596-9e54-83abdd173a19" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" sibling-uuid="a66dd4b7-324e-474e-8578-f75e286f5c99" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="0f09fa11-2265-47bd-ab3b-54db533c002b" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" sibling-uuid="423b1b4c-d3c9-4596-9e54-83abdd173a19" type="field">
+          <property name="name" value="fkUsuario"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="c6a04cf7-66f2-40e0-bd9f-4d95e2f7fb3a" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" sibling-uuid="0f09fa11-2265-47bd-ab3b-54db533c002b" type="field">
+          <property name="name" value="fkTipoRedeSocial"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="fafa2471-9d25-4f9f-8df8-4670478c9d75" parent-uuid="0c31954b-3152-4414-ac88-41f2d1955204" sibling-uuid="c6a04cf7-66f2-40e0-bd9f-4d95e2f7fb3a" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="6d74c8fd-024c-4919-94f1-8f641c7d4fb8" parent-uuid="f8ed3c1c-541b-43c2-b795-236efa227082" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkTiposRedesSociais"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="f4d61bd5-0561-404c-808b-6889ccee3cea" parent-uuid="f8ed3c1c-541b-43c2-b795-236efa227082" sibling-uuid="6d74c8fd-024c-4919-94f1-8f641c7d4fb8" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="e8e58db7-afbc-4b4d-a6d8-cf6cdd9745cc" parent-uuid="f8ed3c1c-541b-43c2-b795-236efa227082" sibling-uuid="f4d61bd5-0561-404c-808b-6889ccee3cea" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="3ea3b053-d747-41c8-981d-b0d9aeacccf3" parent-uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkTema"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="ada18f85-01ae-4e11-b622-0a7d8bae86b6" parent-uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" sibling-uuid="3ea3b053-d747-41c8-981d-b0d9aeacccf3" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="d0eeec68-24ba-46d0-b3af-254e34c29dd2" parent-uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" sibling-uuid="ada18f85-01ae-4e11-b622-0a7d8bae86b6" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="23eea1f3-6bef-49a6-a2a2-90753d201143" parent-uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" sibling-uuid="d0eeec68-24ba-46d0-b3af-254e34c29dd2" type="field">
+          <property name="name" value="descricao"/>
+          <property name="type" value="text"/>
+        </element>
+        <element action="add" uuid="d51c7049-c848-49f3-8800-ef93bdc755eb" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkMateria"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="4d13f067-5de7-43c2-bec7-42aa6ff7874c" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="d51c7049-c848-49f3-8800-ef93bdc755eb" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="9c1e3a66-d369-497a-97f2-ffa3bd49571f" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="4d13f067-5de7-43c2-bec7-42aa6ff7874c" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="2c794924-9444-4880-84d9-e29017710410" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="9c1e3a66-d369-497a-97f2-ffa3bd49571f" type="field">
+          <property name="name" value="fkTema"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="0824a94e-8521-4e58-b94b-cfa380dfc5ce" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="2c794924-9444-4880-84d9-e29017710410" type="field">
+          <property name="name" value="titulo"/>
+          <property name="required" value="true"/>
+          <property name="type" value="text"/>
+        </element>
+        <element action="add" uuid="8becd4a2-04e0-465d-b262-c52188c71a93" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="0824a94e-8521-4e58-b94b-cfa380dfc5ce" type="field">
+          <property name="name" value="descricao"/>
+          <property name="type" value="longText"/>
+        </element>
+        <element action="add" uuid="bd9e01d0-20d3-41bf-be81-9a3050d20db6" parent-uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" sibling-uuid="8becd4a2-04e0-465d-b262-c52188c71a93" type="field">
+          <property name="name" value="fkCategoria"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="90ae2ecd-65af-4258-a7c0-18bb6a4cec1b" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkItem"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="01fc38ee-b800-4ce0-8264-e8da172afdf4" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="90ae2ecd-65af-4258-a7c0-18bb6a4cec1b" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="3d112359-52a8-4727-b1a6-f20e1ddb0573" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="01fc38ee-b800-4ce0-8264-e8da172afdf4" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="d150948f-6647-4dbc-9f50-0b331b1c3048" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="3d112359-52a8-4727-b1a6-f20e1ddb0573" type="field">
+          <property name="name" value="fkMateria"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="0a58cd18-7887-434b-a9ae-2f76e8c8e4a9" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="d150948f-6647-4dbc-9f50-0b331b1c3048" type="field">
+          <property name="name" value="fkTipoDeItem"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="f7580e1f-81e6-42e0-bb98-94baae5da539" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="0a58cd18-7887-434b-a9ae-2f76e8c8e4a9" type="field">
+          <property name="name" value="texto"/>
+          <property name="type" value="longText"/>
+        </element>
+        <element action="add" uuid="a1f73d62-703a-466d-89a7-716a7cf05e74" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="f7580e1f-81e6-42e0-bb98-94baae5da539" type="field">
+          <property name="name" value="videoIncorporado"/>
+          <property name="type" value="longText"/>
+        </element>
+        <element action="add" uuid="d4f04108-9692-4274-89c4-a2667e2b6a72" parent-uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" sibling-uuid="a1f73d62-703a-466d-89a7-716a7cf05e74" type="field">
+          <property name="name" value="ordem"/>
+          <property name="type" value="integer"/>
+        </element>
+        <element action="add" uuid="a74ad25b-97b8-4389-8cc6-10b5569732ec" parent-uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkTipoDeItem"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="bb1d2ddd-7a8d-4d08-b38e-18d1d0751b7f" parent-uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" sibling-uuid="a74ad25b-97b8-4389-8cc6-10b5569732ec" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="cc74d208-c4fa-429c-a9f3-f8eb26c48a53" parent-uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" sibling-uuid="bb1d2ddd-7a8d-4d08-b38e-18d1d0751b7f" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="0487b5a1-776d-4ec8-a1ec-564ff4d2684b" parent-uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" sibling-uuid="cc74d208-c4fa-429c-a9f3-f8eb26c48a53" type="field">
+          <property name="name" value="descricao"/>
+          <property name="type" value="text"/>
+        </element>
+        <element action="add" uuid="0b8ac907-0163-4d69-bc47-ae7129c13e89" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkQuestionario"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="ce99194a-7ab1-4a56-8f91-1674ddfe0c21" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="0b8ac907-0163-4d69-bc47-ae7129c13e89" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="8918cd7c-6612-413f-8b21-187244175e8c" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="ce99194a-7ab1-4a56-8f91-1674ddfe0c21" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="070a8a0b-b77c-4d3d-b85e-8056ca4e41ce" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="8918cd7c-6612-413f-8b21-187244175e8c" type="field">
+          <property name="name" value="pontuacaoPorQuestao"/>
+          <property name="type" value="float"/>
+        </element>
+        <element action="add" uuid="bddd1efa-292a-42bf-9d2a-d357d613cc04" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="070a8a0b-b77c-4d3d-b85e-8056ca4e41ce" type="field">
+          <property name="name" value="minimoAprovacao"/>
+          <property name="type" value="float"/>
+        </element>
+        <element action="add" uuid="bd29388d-73c8-4b60-8697-097171007491" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="bddd1efa-292a-42bf-9d2a-d357d613cc04" type="field">
+          <property name="name" value="enunciado"/>
+          <property name="type" value="text"/>
+        </element>
+        <element action="add" uuid="fc9262b5-de75-49a3-9486-572e2a6eab1c" parent-uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" sibling-uuid="bd29388d-73c8-4b60-8697-097171007491" type="field">
+          <property name="name" value="fkItem"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="66c24d87-75b0-4858-a3dc-952e774f8694" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" type="field">
+          <property name="name" value="fkQuestoes"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="eeeca149-5125-4132-abf0-69bafc6e3ad4" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="66c24d87-75b0-4858-a3dc-952e774f8694" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkRespostas"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="bd7e1919-6647-4e95-bdab-a8e72411ff14" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="eeeca149-5125-4132-abf0-69bafc6e3ad4" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="a6b5683e-e2c5-423b-b5d1-c88a5b529d87" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="bd7e1919-6647-4e95-bdab-a8e72411ff14" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="3453dd21-f92b-4d10-a84b-b9117e62b89d" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="a6b5683e-e2c5-423b-b5d1-c88a5b529d87" type="field">
+          <property name="name" value="fkQuestao"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="a8d31b57-e1d9-4889-bb67-453785aacc87" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="3453dd21-f92b-4d10-a84b-b9117e62b89d" type="field">
+          <property name="name" value="texto"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="2bf24aa7-2a35-43fb-8d4c-9931db2758eb" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="a8d31b57-e1d9-4889-bb67-453785aacc87" type="field">
+          <property name="name" value="correta"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="10e82c59-10e9-4660-9278-290298e21a37" parent-uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" sibling-uuid="2bf24aa7-2a35-43fb-8d4c-9931db2758eb" type="field">
+          <property name="name" value="pontuacaoPorQuestao"/>
+          <property name="type" value="decimal"/>
+        </element>
+        <element action="add" uuid="3830b41c-15d3-49b2-92b5-19adc11a960e" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkMenu"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="3dc827c6-1161-4397-9538-bcfed9b387d9" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="3830b41c-15d3-49b2-92b5-19adc11a960e" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="ed634e4d-e261-4de8-8043-47dfd794f0cd" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="3dc827c6-1161-4397-9538-bcfed9b387d9" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="ee9ccbac-cb1d-4783-8b7e-418b49f80f86" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="ed634e4d-e261-4de8-8043-47dfd794f0cd" type="field">
+          <property name="name" value="descricao"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="fee0ecd6-cabf-4b15-b1a6-5145e3df3587" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="ee9ccbac-cb1d-4783-8b7e-418b49f80f86" type="field">
+          <property name="name" value="url"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="b7d03428-750b-4a10-a50a-99c6325cd9ae" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="fee0ecd6-cabf-4b15-b1a6-5145e3df3587" type="field">
+          <property name="name" value="pai"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="8136d5e3-9460-4943-bd78-e9b4ad734721" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="b7d03428-750b-4a10-a50a-99c6325cd9ae" type="field">
+          <property name="name" value="administrador"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="a6713621-899f-4927-b57b-b8ba93b5762d" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="8136d5e3-9460-4943-bd78-e9b4ad734721" type="field">
+          <property name="name" value="master"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="7a15ef91-9622-462c-bbca-c6ca27b384fe" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="a6713621-899f-4927-b57b-b8ba93b5762d" type="field">
+          <property name="name" value="gestor"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="cb37289a-99fa-44af-a653-5b0e9cf4f05d" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="7a15ef91-9622-462c-bbca-c6ca27b384fe" type="field">
+          <property name="name" value="usuario"/>
+          <property name="type" value="boolean"/>
+        </element>
+        <element action="add" uuid="672102e5-8d7b-4359-9248-d5cabb00f7df" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="cb37289a-99fa-44af-a653-5b0e9cf4f05d" type="field">
+          <property name="name" value="icon"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="1e1871e4-5f50-4883-8d40-9cd04c3e9731" parent-uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" sibling-uuid="672102e5-8d7b-4359-9248-d5cabb00f7df" type="field">
+          <property name="name" value="ordem"/>
+          <property name="type" value="integer"/>
+        </element>
+        <element action="add" uuid="6a33f97e-4f8d-4854-ac17-7d2d2c24db06" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkAlerta"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="d02ad645-286e-4309-b957-99a34c03983b" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="6a33f97e-4f8d-4854-ac17-7d2d2c24db06" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="a1c5d61e-2af7-4f59-9c63-c52528d8a656" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="d02ad645-286e-4309-b957-99a34c03983b" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="c61b5487-2526-4341-bd03-d95f3bf254f9" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="a1c5d61e-2af7-4f59-9c63-c52528d8a656" type="field">
+          <property name="name" value="mensagem"/>
+          <property name="type" value="text"/>
+        </element>
+        <element action="add" uuid="92f909d8-cc1c-4650-909e-a4cc4a158c9e" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="c61b5487-2526-4341-bd03-d95f3bf254f9" type="field">
+          <property name="name" value="fkSetor"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="55462f62-f561-41d7-9a04-901119d1e5b9" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="92f909d8-cc1c-4650-909e-a4cc4a158c9e" type="field">
+          <property name="name" value="fkUsuario"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="04e50f38-d5d0-4c5f-9a70-aec375980196" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="55462f62-f561-41d7-9a04-901119d1e5b9" type="field">
+          <property name="name" value="grupo"/>
+          <property name="type" value="bigInteger"/>
+        </element>
+        <element action="add" uuid="6f08fbaf-073c-48cb-8c05-086ca61c2d66" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="04e50f38-d5d0-4c5f-9a70-aec375980196" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="e0dd9975-d8ea-451c-b417-4d7c13027074" parent-uuid="d916f002-d517-40f8-8505-b70baee24546" sibling-uuid="6f08fbaf-073c-48cb-8c05-086ca61c2d66" type="field">
+          <property name="name" value="titulo"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="d108a306-aa47-4844-bbb6-3e30f7064286" parent-uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkCategoria"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="79a8d75d-66df-4f76-a0c3-5e0604b0bc6b" parent-uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" sibling-uuid="d108a306-aa47-4844-bbb6-3e30f7064286" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="e01089ce-edac-40ee-9c74-a43fe1ecec9e" parent-uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" sibling-uuid="79a8d75d-66df-4f76-a0c3-5e0604b0bc6b" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="5d6ba94f-03f7-485b-9d1e-75289d25ff60" parent-uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" sibling-uuid="e01089ce-edac-40ee-9c74-a43fe1ecec9e" type="field">
+          <property name="name" value="fkEmpresa"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="04777c72-a9a2-4320-a5a1-7bc10f23b8f2" parent-uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" sibling-uuid="5d6ba94f-03f7-485b-9d1e-75289d25ff60" type="field">
+          <property name="name" value="titulo"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="4724ae7f-bd70-4849-b3a3-e980fc8a18b4" parent-uuid="cf93862c-3b7f-41f1-ac4c-bbb33f9f343f" type="field">
+          <property name="name" value="respostas_pk_respostas"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="ca490922-f55c-460d-bbd5-95f8596768d0" parent-uuid="cf93862c-3b7f-41f1-ac4c-bbb33f9f343f" sibling-uuid="4724ae7f-bd70-4849-b3a3-e980fc8a18b4" type="field">
+          <property name="name" value="usuario_pk_usuario"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="160620be-4aa9-4c4f-9883-59ee65359ea6" parent-uuid="717f7712-9893-49e1-a767-8567e6793dfe" type="field">
+          <property name="auto-increment" value="true"/>
+          <property name="name" value="pkQuestoes"/>
+          <property name="primary" value="true"/>
+          <property name="required" value="true"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unique" value="true"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="db587b6c-46ba-4665-b1e8-fa04d99623a8" parent-uuid="717f7712-9893-49e1-a767-8567e6793dfe" sibling-uuid="160620be-4aa9-4c4f-9883-59ee65359ea6" type="field">
+          <property name="name" value="created_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="09b0c531-2dda-4cb6-b2c9-10c411f7ac32" parent-uuid="717f7712-9893-49e1-a767-8567e6793dfe" sibling-uuid="db587b6c-46ba-4665-b1e8-fa04d99623a8" type="field">
+          <property name="name" value="updated_at"/>
+          <property name="type" value="timestamp"/>
+        </element>
+        <element action="add" uuid="e49530d9-524d-4b06-8999-108e16bda466" parent-uuid="717f7712-9893-49e1-a767-8567e6793dfe" sibling-uuid="09b0c531-2dda-4cb6-b2c9-10c411f7ac32" type="field">
+          <property name="name" value="enunciado"/>
+          <property name="type" value="string"/>
+        </element>
+        <element action="add" uuid="aa958e99-7427-43f5-8c9c-a0987914322d" parent-uuid="717f7712-9893-49e1-a767-8567e6793dfe" sibling-uuid="e49530d9-524d-4b06-8999-108e16bda466" type="field">
+          <property name="name" value="fkQuestionario"/>
+          <property name="type" value="bigInteger"/>
+          <property name="unsigned" value="true"/>
+        </element>
+        <element action="add" uuid="ec324f8a-a4b2-415f-aedc-b072fed3c8bd" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" type="index">
+          <property name="name" value="empresa_cnpj_unique"/>
+          <property name="unique" value="true"/>
+        </element>
+        <element action="add" uuid="b116b646-0ae6-4ea4-b3f7-c8e63777be7d" parent-uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" type="index">
+          <property name="name" value="empresa_nomefantasia_unique"/>
+          <property name="unique" value="true"/>
+        </element>
+        <element action="add" uuid="f62f9150-a029-4764-8268-c8405227889c" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" type="index">
+          <property name="name" value="pessoa_cpf_unique"/>
+          <property name="unique" value="true"/>
+        </element>
+        <element action="add" uuid="9f617cbe-f769-48bc-8392-268f2ed8a7eb" parent-uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" type="index">
+          <property name="name" value="pessoa_email_unique"/>
+          <property name="unique" value="true"/>
+        </element>
+        <element action="add" uuid="811e0fa2-ac75-4704-965c-1f7937740cb8" parent-uuid="ec324f8a-a4b2-415f-aedc-b072fed3c8bd" type="index-field">
+          <property name="name" value="cnpj"/>
+        </element>
+        <element action="add" uuid="a326d31d-c2c4-41e1-9b61-9ac0cc0fce31" parent-uuid="b116b646-0ae6-4ea4-b3f7-c8e63777be7d" type="index-field">
+          <property name="name" value="nomeFantasia"/>
+        </element>
+        <element action="add" uuid="69fbee0f-3439-4181-acf0-ea8360166f4b" parent-uuid="f62f9150-a029-4764-8268-c8405227889c" type="index-field">
+          <property name="name" value="cpf"/>
+        </element>
+        <element action="add" uuid="0c546350-1045-47b1-b692-7fed26fc651d" parent-uuid="9f617cbe-f769-48bc-8392-268f2ed8a7eb" type="index-field">
+          <property name="name" value="email"/>
+        </element>
+        <element action="add" uuid="6e2e1e94-add4-445b-bb21-c06a6cc9a36a" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Cargo"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="cargos"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="4f52038f-4505-41fe-94d1-2821354e8fc3" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Gestor"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="gestors"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="e0166474-5e8e-423a-be32-1bb5080c661c" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Gestor"/>
+          <property name="inverse-alias" value="setor"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="gestors"/>
+          <property name="to" value="\App\Models\Setor"/>
+        </element>
+        <element action="add" uuid="f0f5dc10-6210-41c7-9ffc-592d7faa8298" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Gestor"/>
+          <property name="inverse-alias" value="usuario"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="gestors"/>
+          <property name="to" value="\App\Models\Usuario"/>
+        </element>
+        <element action="add" uuid="4dcf8962-ad8f-4c8e-b44c-8de764116e7e" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Usuario"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="usuarios"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="d038525c-3364-4cac-b6cd-03245154e660" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Usuario"/>
+          <property name="inverse-alias" value="setor"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="usuarios"/>
+          <property name="to" value="\App\Models\Setor"/>
+        </element>
+        <element action="add" uuid="21890e98-96d0-4ca1-941e-e699537f648e" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Usuario"/>
+          <property name="inverse-alias" value="cargo"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="usuarios"/>
+          <property name="to" value="\App\Models\Cargo"/>
+        </element>
+        <element action="add" uuid="2a63a99c-c5f9-4fbc-994c-918cf57e19a4" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Setor"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="setors"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="7c2b9625-5e46-471a-8693-f7f09a832d8d" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\RedesSociais"/>
+          <property name="inverse-alias" value="usuario"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="redesSociais"/>
+          <property name="to" value="\App\Models\Usuario"/>
+        </element>
+        <element action="add" uuid="bddbf4c1-f07d-476b-b2cb-33f339c7ead2" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\RedesSociais"/>
+          <property name="inverse-alias" value="tiposRedesSociais"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="redesSociais"/>
+          <property name="to" value="\App\Models\TiposRedesSociais"/>
+        </element>
+        <element action="add" uuid="a5c2a8dd-d8ec-4b3c-b462-ece727f890c8" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\RedesSociais"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="redesSociais"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="7dca64d8-2e36-41c9-ac74-5fa5382ba009" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Materia"/>
+          <property name="inverse-alias" value="tema"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="materias"/>
+          <property name="to" value="\App\Models\Tema"/>
+        </element>
+        <element action="add" uuid="d6e57710-cd24-4cad-b197-74234a6bcb0f" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Materia"/>
+          <property name="inverse-alias" value="categoria"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="materias"/>
+          <property name="to" value="\App\Models\Categoria"/>
+        </element>
+        <element action="add" uuid="9278970b-db17-4875-9cda-633da30d2f7c" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Item"/>
+          <property name="inverse-alias" value="materia"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="conteudos"/>
+          <property name="to" value="\App\Models\Materia"/>
+        </element>
+        <element action="add" uuid="0538deda-8b92-4700-a5d0-e1079aa12b87" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Item"/>
+          <property name="inverse-alias" value="tipoDeConteudo"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="conteudos"/>
+          <property name="to" value="\App\Models\TipoDeitem"/>
+        </element>
+        <element action="add" uuid="f1472f4c-cba0-438c-8693-2e3845186374" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Questionario"/>
+          <property name="inverse-alias" value="item"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="questionarios"/>
+          <property name="to" value="\App\Models\Item"/>
+        </element>
+        <element action="add" uuid="836c42cc-3f25-4f7e-b458-f686e128342b" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Respostas"/>
+          <property name="inverse-alias" value="questoes"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="respostas"/>
+          <property name="to" value="\App\Models\Questoes"/>
+        </element>
+        <element action="add" uuid="6fd71355-e5b8-416c-ba17-fca502bab1ca" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Menu"/>
+          <property name="inverse-alias" value="menu"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="menus"/>
+          <property name="to" value="\App\Models\Menu"/>
+        </element>
+        <element action="add" uuid="37006940-f02c-4dd8-90f6-b5d2a5a88db2" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Alerta"/>
+          <property name="inverse-alias" value="setor"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="alertas"/>
+          <property name="to" value="\App\Models\Setor"/>
+        </element>
+        <element action="add" uuid="5a5dba80-b56b-477b-9137-39d279e4a61b" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Alerta"/>
+          <property name="inverse-alias" value="usuario"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="alertas"/>
+          <property name="to" value="\App\Models\Usuario"/>
+        </element>
+        <element action="add" uuid="572c8de1-4858-4745-82ed-ee17492eeece" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Alerta"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="alertas"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="02a9464d-635f-4a95-b53d-4253849f202b" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Categoria"/>
+          <property name="inverse-alias" value="empresa"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="categorias"/>
+          <property name="to" value="\App\Models\Empresa"/>
+        </element>
+        <element action="add" uuid="9e82ce8b-28e6-49f8-adb3-491bb7e8d4d0" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="association">
+          <property name="from" value="\App\Models\Questoes"/>
+          <property name="inverse-alias" value="questionario"/>
+          <property name="many-inverse" value="false"/>
+          <property name="many-owner" value="true"/>
+          <property name="owner-alias" value="questoes"/>
+          <property name="to" value="\App\Models\Questionario"/>
+        </element>
+        <element action="add" uuid="9480272b-bfae-48d3-9bdb-b1f21e4f7ee6" parent-uuid="6e2e1e94-add4-445b-bb21-c06a6cc9a36a" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="ddfb86e3-a30a-4687-acee-c68c83b355a0" parent-uuid="4f52038f-4505-41fe-94d1-2821354e8fc3" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="49e5ff3e-ebef-47a0-8136-070bf9ba2d4c" parent-uuid="e0166474-5e8e-423a-be32-1bb5080c661c" type="association-field">
+          <property name="from" value="fkSetor"/>
+          <property name="to" value="pkSetor"/>
+        </element>
+        <element action="add" uuid="ec48bd76-a24e-4535-9533-39aca1530aa8" parent-uuid="f0f5dc10-6210-41c7-9ffc-592d7faa8298" type="association-field">
+          <property name="from" value="fkUsuario"/>
+          <property name="to" value="pkUsuario"/>
+        </element>
+        <element action="add" uuid="6833a45e-514e-4740-a629-c202ef2a72ee" parent-uuid="4dcf8962-ad8f-4c8e-b44c-8de764116e7e" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="840a3e09-f1e6-4a38-83ad-35d14c96c102" parent-uuid="d038525c-3364-4cac-b6cd-03245154e660" type="association-field">
+          <property name="from" value="fkSetor"/>
+          <property name="to" value="pkSetor"/>
+        </element>
+        <element action="add" uuid="e3d41994-e371-4e4d-83da-8f61d0973df6" parent-uuid="21890e98-96d0-4ca1-941e-e699537f648e" type="association-field">
+          <property name="from" value="fkCargo"/>
+          <property name="to" value="pkCargo"/>
+        </element>
+        <element action="add" uuid="02ee2c40-4bbe-4818-90fa-23cc833e69a7" parent-uuid="2a63a99c-c5f9-4fbc-994c-918cf57e19a4" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="04eca15d-a268-4376-a03a-dc700102dfda" parent-uuid="7c2b9625-5e46-471a-8693-f7f09a832d8d" type="association-field">
+          <property name="from" value="fkUsuario"/>
+          <property name="to" value="pkUsuario"/>
+        </element>
+        <element action="add" uuid="d9ff6964-ac1c-485d-8593-a6724e82e969" parent-uuid="bddbf4c1-f07d-476b-b2cb-33f339c7ead2" type="association-field">
+          <property name="from" value="fkTipoRedeSocial"/>
+          <property name="to" value="pkTiposRedesSociais"/>
+        </element>
+        <element action="add" uuid="4fc33c97-fac8-4e7b-8fa8-8eb2f55c08e1" parent-uuid="a5c2a8dd-d8ec-4b3c-b462-ece727f890c8" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="fbedd74b-c0f2-409a-b193-b4b008178eb6" parent-uuid="7dca64d8-2e36-41c9-ac74-5fa5382ba009" type="association-field">
+          <property name="from" value="fkTema"/>
+          <property name="to" value="pkTema"/>
+        </element>
+        <element action="add" uuid="a13785fa-5278-4b8a-acac-bc79367246dc" parent-uuid="d6e57710-cd24-4cad-b197-74234a6bcb0f" type="association-field">
+          <property name="from" value="fkCategoria"/>
+          <property name="to" value="pkCategoria"/>
+        </element>
+        <element action="add" uuid="2cbbe518-46fa-4953-bd4b-93d3ca2ce8e9" parent-uuid="9278970b-db17-4875-9cda-633da30d2f7c" type="association-field">
+          <property name="from" value="fkMateria"/>
+          <property name="to" value="pkMateria"/>
+        </element>
+        <element action="add" uuid="bb32a0c6-75de-4bbf-a429-67082719c1bb" parent-uuid="0538deda-8b92-4700-a5d0-e1079aa12b87" type="association-field">
+          <property name="from" value="fkTipoDeItem"/>
+          <property name="to" value="pkTipoDeItem"/>
+        </element>
+        <element action="add" uuid="a7a65cca-2d69-4d8a-9a6f-9a379f983788" parent-uuid="f1472f4c-cba0-438c-8693-2e3845186374" type="association-field">
+          <property name="from" value="fkItem"/>
+          <property name="to" value="pkItem"/>
+        </element>
+        <element action="add" uuid="5d8d26d0-2c4e-4bc0-b372-0f51153430f1" parent-uuid="836c42cc-3f25-4f7e-b458-f686e128342b" type="association-field">
+          <property name="from" value="fkQuestoes"/>
+          <property name="to" value="pkQuestoes"/>
+        </element>
+        <element action="add" uuid="bf79245c-8f53-47c1-b3ba-4d8ef9929492" parent-uuid="6fd71355-e5b8-416c-ba17-fca502bab1ca" type="association-field">
+          <property name="from" value="pai"/>
+          <property name="to" value="pkMenu"/>
+        </element>
+        <element action="add" uuid="a1fe7c18-e5a1-46f0-83ec-25d83028e5a5" parent-uuid="37006940-f02c-4dd8-90f6-b5d2a5a88db2" type="association-field">
+          <property name="from" value="fkSetor"/>
+          <property name="to" value="pkSetor"/>
+        </element>
+        <element action="add" uuid="fcba3a57-8838-45b6-b351-b9f07039365a" parent-uuid="5a5dba80-b56b-477b-9137-39d279e4a61b" type="association-field">
+          <property name="from" value="fkUsuario"/>
+          <property name="to" value="pkUsuario"/>
+        </element>
+        <element action="add" uuid="d32cb126-000b-48ff-8a69-5df03b6fd6aa" parent-uuid="572c8de1-4858-4745-82ed-ee17492eeece" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="11829a60-fc8f-4097-a320-d3b648926f1d" parent-uuid="02a9464d-635f-4a95-b53d-4253849f202b" type="association-field">
+          <property name="from" value="fkEmpresa"/>
+          <property name="to" value="pkEmpresa"/>
+        </element>
+        <element action="add" uuid="c0cd4cbd-b529-420c-81fa-15ba8a1b4256" parent-uuid="9e82ce8b-28e6-49f8-adb3-491bb7e8d4d0" type="association-field">
+          <property name="from" value="fkQuestionario"/>
+          <property name="to" value="pkQuestionario"/>
+        </element>
+        <element action="add" uuid="5a9d3627-10b9-4d88-ada1-1a9f14f7a1b7" parent-uuid="e894538d-df11-40ce-999c-363ebb6fa251" type="many-to-many">
+          <property name="mn-entity" value="\App\Models\UsuarioRespostas"/>
+        </element>
+        <element action="add" uuid="a2a2beb9-638c-4bb6-8c5f-ebc740516fb0" parent-uuid="5a9d3627-10b9-4d88-ada1-1a9f14f7a1b7" type="many-to-many-entity">
+          <property name="alias" value="respostas"/>
+          <property name="name" value="\App\Models\Respostas"/>
+          <property name="owning-side" value="true"/>
+        </element>
+        <element action="add" uuid="ee189a3e-a03a-486b-9f3e-37ece26fc6c9" parent-uuid="5a9d3627-10b9-4d88-ada1-1a9f14f7a1b7" type="many-to-many-entity">
+          <property name="alias" value="usuarios"/>
+          <property name="name" value="\App\Models\Usuario"/>
+          <property name="owning-side" value="false"/>
+        </element>
+        <element action="add" uuid="c4e0f504-9f6d-41c1-98a1-62685f2c6b04" parent-uuid="a2a2beb9-638c-4bb6-8c5f-ebc740516fb0" type="many-to-many-field">
+          <property name="from" value="respostas_pk_respostas"/>
+          <property name="to" value="pkRespostas"/>
+        </element>
+        <element action="add" uuid="12c552c7-7e5f-4eba-9c16-4b15098ebcbb" parent-uuid="ee189a3e-a03a-486b-9f3e-37ece26fc6c9" type="many-to-many-field">
+          <property name="from" value="usuario_pk_usuario"/>
+          <property name="to" value="pkUsuario"/>
+        </element>
+      </revision>
+    </migrations>
+  </module>
+  <visual-data>
+    <association uuid="02a9464d-635f-4a95-b53d-4253849f202b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="0538deda-8b92-4700-a5d0-e1079aa12b87" caption1-position-x="0" caption1-position-y="0" center-position-x="4" center-position-y="0" color="#969696"/>
+    <association uuid="21890e98-96d0-4ca1-941e-e699537f648e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="2a63a99c-c5f9-4fbc-994c-918cf57e19a4" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="37006940-f02c-4dd8-90f6-b5d2a5a88db2" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="4dcf8962-ad8f-4c8e-b44c-8de764116e7e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="4f52038f-4505-41fe-94d1-2821354e8fc3" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="572c8de1-4858-4745-82ed-ee17492eeece" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="5a5dba80-b56b-477b-9137-39d279e4a61b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="6e2e1e94-add4-445b-bb21-c06a6cc9a36a" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="6fd71355-e5b8-416c-ba17-fca502bab1ca" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20" color="#969696"/>
+    <association uuid="7c2b9625-5e46-471a-8693-f7f09a832d8d" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="7dca64d8-2e36-41c9-ac74-5fa5382ba009" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="836c42cc-3f25-4f7e-b458-f686e128342b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="9278970b-db17-4875-9cda-633da30d2f7c" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="9e82ce8b-28e6-49f8-adb3-491bb7e8d4d0" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="a5c2a8dd-d8ec-4b3c-b462-ece727f890c8" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="bddbf4c1-f07d-476b-b2cb-33f339c7ead2" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="d038525c-3364-4cac-b6cd-03245154e660" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="d6e57710-cd24-4cad-b197-74234a6bcb0f" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="e0166474-5e8e-423a-be32-1bb5080c661c" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="f0f5dc10-6210-41c7-9ffc-592d7faa8298" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="f1472f4c-cba0-438c-8693-2e3845186374" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <entity uuid="0c31954b-3152-4414-ac88-41f2d1955204" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="610" position-y="183" size-x="0" size-x2="148" size-y="0" size-y2="101"/>
+    <entity uuid="14c20700-aecc-4d35-9e32-91854cfe9bd4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="365" position-y="20" size-x="0" size-x2="124" size-y="0" size-y2="171"/>
+    <entity uuid="1a890f36-6b03-498d-9b5c-a0f5e4b68933" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="634" position-y="558" size-x="0" size-x2="149" size-y="0" size-y2="101"/>
+    <entity uuid="6aa82c79-084d-4947-8b73-6ec30422fe2f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="249" position-y="369" size-x="0" size-x2="124" size-y="0" size-y2="87"/>
+    <entity uuid="6b277e8e-cd13-4be5-ab0c-02e25cc4e23e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="218" position-y="538" size-x="0" size-x2="124" size-y="0" size-y2="73"/>
+    <entity uuid="717f7712-9893-49e1-a767-8567e6793dfe" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="811" position-y="794" size-x="0" size-x2="136" size-y="0" size-y2="87"/>
+    <entity uuid="7d36d4a6-250c-40e0-9721-3b03c6ff5a22" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="419" position-y="343" size-x="0" size-x2="124" size-y="0" size-y2="115"/>
+    <entity uuid="9ecc82fe-a935-4494-bfb5-7d2a6219dd52" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="48" position-y="685" size-x="0" size-x2="125" size-y="0" size-y2="73"/>
+    <entity uuid="9f0a0eed-f4f8-4575-8284-1da8f5fd8418" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="48" position-y="34" size-x="0" size-x2="172" size-y="0" size-y2="297"/>
+    <entity uuid="a6c36c5c-124a-4d37-9e15-a9e9bb144081" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="966" position-y="550" size-x="0" size-x2="158" size-y="0" size-y2="129"/>
+    <entity uuid="bea4f6d1-d27d-4971-b283-59a02cb26824" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="19" position-y="368" size-x="0" size-x2="124" size-y="0" size-y2="143"/>
+    <entity uuid="cf93862c-3b7f-41f1-ac4c-bbb33f9f343f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="974" position-y="31" size-x="0" size-x2="177" size-y="0" size-y2="60"/>
+    <entity uuid="d916f002-d517-40f8-8505-b70baee24546" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="801" position-y="315" size-x="0" size-x2="137" size-y="0" size-y2="101"/>
+    <entity uuid="d9eb44de-30ff-4a83-bada-f6313463c2ee" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="402" position-y="850" size-x="0" size-x2="133" size-y="0" size-y2="73"/>
+    <entity uuid="db2b6675-8bb5-42cf-bf4f-84a5ddcf69d7" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="254" position-y="757" size-x="0" size-x2="124" size-y="0" size-y2="115"/>
+    <entity uuid="db8c2b98-5407-4eec-bf65-386580be5012" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="651" position-y="58" size-x="0" size-x2="124" size-y="0" size-y2="73"/>
+    <entity uuid="e31fd0f0-3cee-443a-9a89-36677886f9c9" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="398" position-y="558" size-x="0" size-x2="140" size-y="0" size-y2="129"/>
+    <entity uuid="f8ed3c1c-541b-43c2-b795-236efa227082" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="587" position-y="343" size-x="0" size-x2="164" size-y="0" size-y2="59"/>
+    <many-to-many-association uuid="5a9d3627-10b9-4d88-ada1-1a9f14f7a1b7" color="#969696"/>
+    <module uuid="e894538d-df11-40ce-999c-363ebb6fa251" bg-color="#FEFCE8" position-x="50" position-y="50" size-x="0" size-x2="1353" size-y="0" size-y2="1128"/>
+    <project uuid="29b8acbd-fabf-4611-9eb1-ede27b41423c" size-x="0" size-x2="1453" size-y="0" size-y2="1228"/>
+  </visual-data>
+</skipper>
